@@ -2,108 +2,39 @@
 
 Drupal 8.x install profile with requirements for Guru Theme. 
 
-You may use the following as composer.json 
+You may use the following as composer.json in a directory and then use composer to set up the project. 
 
-<pre>{
-    "name": "drupal-composer/drupal-project",
-    "description": "Project template for Drupal 8 projects with composer",
-    "type": "project",
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "",
-            "role": ""
-        }
-    ],
-    "repositories": [
-      {
-          "type": "composer",
-          "url": "https://packages.drupal.org/8"
-      },
-      {
-        "type": "package",
-        "package": {
-          "name": "guru_theme",
-          "type": "drupal-theme",
-          "version": "1.0",
-          "source": {
-              "url": "https://github.com/digitaldonkey/guru.git",
-              "type": "git",
-              "reference": "8.x-1.x"
-          }
-        }
-      },
-      {
-        "type": "package",
-        "package": {
-          "name": "guru_profile",
-          "type": "drupal-profile",
-          "version": "1.0",
-          "source": {
-            "url": "https://github.com/digitaldonkey/guru_profile.git",
-            "type": "git",
-            "reference": "8.x-1.x"
-          }
-        }
-      }
-    ],
-    "require": {
-        "composer/installers": "^1.0.20",
-        "drupal-composer/drupal-scaffold": "^2.0.1",
-        "cweagans/composer-patches": "~1.0",
-        "drupal/core": "~8.0",
-        "drush/drush": "~8.0",
-        "drupal/console": "~1.0",
-        "drupal/devel": "1.x-dev",
-        "drupal/link_css": "1.x-dev",
-        "drupal/admin_toolbar": "^1.17",
-        "guru_theme": "1.0",
-        "guru_profile": "1.0"
-    },
-    "require-dev": {
-        "behat/mink": "~1.7",
-        "behat/mink-goutte-driver": "~1.2",
-        "jcalderonzumba/gastonjs": "~1.0.2",
-        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-        "mikey179/vfsStream": "~1.2",
-        "phpunit/phpunit": "~4.8",
-        "symfony/css-selector": "~2.8"
-    },
-    "conflict": {
-        "drupal/drupal": "*"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "autoload": {
-        "classmap": [
-            "scripts/composer/ScriptHandler.php"
-        ]
-    },
-    "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-        "pre-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "pre-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "post-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-        ],
-        "post-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-        ]
-    },
-    "extra": {
-        "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/contrib/{$name}": ["type:drupal-drush"]
-        }
-    }
-}
+
+Create a project with composer replace drupal-project/composer.json with the one below.
+
+<pre>
+composer create-project drupal-composer/drupal-project:8.x-dev  --stability dev --no-interaction
+cd drupal-project
+vi composer.json // Replace with content from composer.json.example
+composer update
 </pre>
 
+The Update should lead to something like: 
+
+<pre>  - Installing drupal/devel (dev-1.x 79e688d)
+    Cloning 79e688d0a2425a0539a7c6b9fe4576cffceee6e5
+
+  - Installing drupal/link_css (dev-1.x 85a6767)
+    Cloning 85a67676326c518560b4999d406a8f4ad7b22576
+
+  - Installing guru_theme (1.0)
+    Cloning 8.x-1.x
+
+  - Installing guru_profile (1.0)
+    Cloning 8.x-1.x
+
+  - Installing drupal/admin_toolbar (1.17.0)
+    Loading from cache
+
+Writing lock file
+Generating autoload files
+> DrupalProject\composer\ScriptHandler::createRequiredFiles
+</pre>
+
+<h4>composer.json</h4>
+https://github.com/digitaldonkey/guru_profile/blob/8.x-1.x/composer.json.example
