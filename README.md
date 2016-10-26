@@ -1,0 +1,109 @@
+# guru_profile
+
+Drupal 8.x install profile with requirements for Guru Theme. 
+
+You may use the following as composer.json 
+
+<pre>{
+    "name": "drupal-composer/drupal-project",
+    "description": "Project template for Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": [
+      {
+          "type": "composer",
+          "url": "https://packages.drupal.org/8"
+      },
+      {
+        "type": "package",
+        "package": {
+          "name": "guru_theme",
+          "type": "drupal-theme",
+          "version": "1.0",
+          "source": {
+              "url": "https://github.com/digitaldonkey/guru.git",
+              "type": "git",
+              "reference": "8.x-1.x"
+          }
+        }
+      },
+      {
+        "type": "package",
+        "package": {
+          "name": "guru_profile",
+          "type": "drupal-profile",
+          "version": "1.0",
+          "source": {
+            "url": "https://github.com/digitaldonkey/guru_profile.git",
+            "type": "git",
+            "reference": "8.x-1.x"
+          }
+        }
+      }
+    ],
+    "require": {
+        "composer/installers": "^1.0.20",
+        "drupal-composer/drupal-scaffold": "^2.0.1",
+        "cweagans/composer-patches": "~1.0",
+        "drupal/core": "~8.0",
+        "drush/drush": "~8.0",
+        "drupal/console": "~1.0",
+        "drupal/devel": "1.x-dev",
+        "drupal/link_css": "1.x-dev",
+        "drupal/admin_toolbar": "^1.17",
+        "guru_theme": "1.0",
+        "guru_profile": "1.0"
+    },
+    "require-dev": {
+        "behat/mink": "~1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "jcalderonzumba/gastonjs": "~1.0.2",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "~2.8"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        }
+    }
+}
+</pre>
+
